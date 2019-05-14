@@ -4,24 +4,30 @@ Vagrant.configure('2') do |config|
 
   config.ssh.username = 'ubuntu'
   config.ssh.port = '2727'
+  config.ssh.private_key_path = 'test.pem'
+  
   config.nfs.functional = false
 
   config.vm.provider :openstack do |os|
+    os.ssl_verify_peer    = false
+    #os.ssl_ca_file = '/etc/ssl/certs/'
     os.server_name        = 'vagrant_test'
-    os.openstack_auth_url = 'http://cloud-main.bitp.kiev.ua:35357/v3'
+    os.openstack_auth_url = 'https://openstack.bitp.kiev.ua:5000/v3'
+    os.openstack_network_url = 'https://openstack.bitp.kiev.ua:9696/v2.0'
     os.username           = 'name'
     os.password           = 'password'
     os.project_name       = 'sysbio'
-    os.flavor             = 'm1.small'
-    os.image              = 'sysbio.xenial.ubuntu.raw'
+    os.flavor             = 'm1.medium'
+    os.image              = 'Ubuntu-cosmic'
     os.identity_api_version = '3'
     os.domain_name = 'default'
     os.floating_ip_pool   = 'public'
     os.networks = 'sysbio-private'
+    os.keypair_name = 'test'
     os.user_data = """#!/bin/bash
 
-      sudo sed -i 's/Port 22/Port 2727/' /etc/ssh/sshd_config
-      sudo service ssh restart
+      sudo sed -i 's/\#Port 22/Port 2727/' /etc/ssh/sshd_config
+      sudo systemctl restart ssh
     """
   end
 
@@ -31,8 +37,8 @@ Vagrant.configure('2') do |config|
     apt-get update
     apt-get install build-essential -y
     apt-get purge -y puppet
-    wget https://apt.puppetlabs.com/puppet5-release-xenial.deb
-    dpkg -i puppet5-release-xenial.deb
+    wget https://apt.puppetlabs.com/puppet-release-bionic.deb
+    dpkg -i puppet5-release-bionic.deb
     apt-get update
     apt-get install -y puppet-agent
   SHELL
