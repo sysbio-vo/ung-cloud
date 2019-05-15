@@ -19,13 +19,18 @@ Clone this repo:
 git clone https://github.com/sysbio-vo/ung-cloud.git
 cd ung-cloud/cloud/vagrant
 mkdir modules
+cd modules
+# Clone repos with required modules
+git clone https://github.com/puppetlabs/puppetlabs-stdlib stdlib
+git clone https://github.com/puppetlabs/puppetlabs-apt apt
+cd ..
 ```
 
 Change _Vagrantfile_ to contain proper username and password in OpenStack project. Create virtual machine with:
 ```
 vagrant up
 ```
-Normally it should ssh automatically, but sometimes in hangs (it might be a sign that smth is wrong), just CTRL+C and do:
+Wait for the machine to boot, so it can ssh automatically, but sometimes in hangs (it might be a sign that smth is wrong). If the machine is already running you can execute:
 ```
 vagrant ssh
 ```
