@@ -2,13 +2,16 @@ require 'vagrant-openstack-provider'
 
 Vagrant.configure('2') do |config|
 
+  config.vm.boot_timeout = 600
   config.ssh.username = 'ubuntu'
   config.ssh.port = '2727'
-  config.ssh.private_key_path = 'test.pem'
+  #config.ssh.private_key_path = 'test.pem'
   
   config.nfs.functional = false
 
   config.vm.provider :openstack do |os|
+    os.http.open_timeout = 120
+    os.http.read_timeout = 120
     os.ssl_verify_peer    = false
     #os.ssl_ca_file = '/etc/ssl/certs/'
     os.server_name        = 'vagrant_test'
@@ -23,7 +26,7 @@ Vagrant.configure('2') do |config|
     os.domain_name = 'default'
     os.floating_ip_pool   = 'public'
     os.networks = 'sysbio-private'
-    os.keypair_name = 'test'
+    #os.keypair_name = 'test'
     os.user_data = """#!/bin/bash
 
       sudo sed -i 's/\#Port 22/Port 2727/' /etc/ssh/sshd_config
