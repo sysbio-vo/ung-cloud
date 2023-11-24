@@ -19,9 +19,17 @@ sudo ln -s /snap/bin/certbot /usr/bin/certbot
 sudo certbot certonly --nginx
 # jupyter.sysbio.org.ua rserver.sysbio.org.ua
 
+git clone git clone git@github.com:mkrooted256/ung-cloud.git
+cd ung-cloud
+git checkout proxy
 sudo ln -s /home/mkrooted/ung-cloud/acid/ingress-proxy/jupyter.sysbio.org.ua /etc/nginx/sites-enabled/
 sudo ln -s /home/mkrooted/ung-cloud/acid/ingress-proxy/rserver.sysbio.org.ua /etc/nginx/sites-enabled/
 
-
+# Test the new config
+sudo nginx -t
+# Remove default server
+sudo rm /etc/nginx/sites-enabled/default
+# Restart nginx
+sudo systemctl restart nginx
 
 ```
