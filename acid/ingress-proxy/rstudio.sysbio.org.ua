@@ -5,8 +5,8 @@ server {
     listen [::]:443 ssl;
 
     server_name         rserver.sysbio.org.ua;
-    ssl_certificate     /etc/letsencrypt/live/rserver.sysbio.org.ua/fullchain.pem
-    ssl_certificate_key /etc/letsencrypt/live/rserver.sysbio.org.ua/privkey.pem
+    ssl_certificate     /etc/letsencrypt/live/rserver.sysbio.org.ua/fullchain.pem;
+    ssl_certificate_key /etc/letsencrypt/live/rserver.sysbio.org.ua/privkey.pem;
         
     location / {
         proxy_pass       localhost:9010;

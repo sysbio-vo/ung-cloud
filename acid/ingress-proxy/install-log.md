@@ -19,5 +19,9 @@ sudo ln -s /snap/bin/certbot /usr/bin/certbot
 sudo certbot certonly --nginx
 # jupyter.sysbio.org.ua rserver.sysbio.org.ua
 
+sudo ln -s /home/mkrooted/ung-cloud/acid/ingress-proxy/jupyter.sysbio.org.ua /etc/nginx/sites-enabled/
+sudo ln -s /home/mkrooted/ung-cloud/acid/ingress-proxy/rserver.sysbio.org.ua /etc/nginx/sites-enabled/
+
+
 
 ```
