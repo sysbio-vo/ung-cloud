@@ -9,7 +9,7 @@ server {
     ssl_certificate_key /etc/letsencrypt/live/rserver.sysbio.org.ua/privkey.pem;
         
     location / {
-        proxy_pass      http://localhost:9010;
+        proxy_pass      http://localhost:8787;
         include proxy_params;
     }
 }
