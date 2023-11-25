@@ -16,27 +16,19 @@ curl -L https://tljh.jupyter.org/bootstrap.py \
 ```
 - `bash jupyterhub-install.sh`
 
-Inside jupyter hub terminal:
+Via ssh, pwd is `ung-cloud/acid`:
 ```bash
-sudo jupyterhub --generate-config -f /home/jupyter-mkrooted/assets/jupyterhub_config.py
-```
-
-Via ssh:
-```bash
-sudo -iu jupyter-mkrooted
-touch /home/jupyter-mkrooted/assets/jupyterhub_config.py
-sudo ln /home/jupyter-mkrooted/assets/jupyterhub_config.py /opt/tljh/config/jupyterhub_config.d/jupyterhub_config.py
+sudo cp jupyterhub/sysbio-logo1.png /opt/tljh/config/sysbio-logo1.png
+sudo cp jupyterhub/jupyterhub_config.py /opt/tljh/config/jupyterhub_config.d/jupyterhub_config.py
 
 sudo tljh-config set http.address jupyter.sysbio.org.ua
 sudo tljh-config set http.port 9001
 sudo tljh-config set https.enabled false
-```
 
-Append to `jupyterhub_config.py`:
-```python
-# Configuration file for jupyterhub.
-c = get_config()  #noqa
-c.JupyterHub.logo_file = '/home/jupyter-mkrooted/assets/sysbio-logo1.png'
+sudo tljh-config set limits.cpu 24
+sudo tljh-config set limits.memory 130G
+sudo tljh-config reload proxy
+sudo tljh-config reload hub
 ```
 
 Append to `/etc/hosts`:
