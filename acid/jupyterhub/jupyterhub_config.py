@@ -7,4 +7,4 @@ c.JupyterHub.allow_named_servers = True
 c.JupyterHub.named_server_limit_per_user = 3
 
 c.Spawner.notebook_dir = '/'
-c.Spawner.default_url = '/lab/home'
+c.Spawner.default_url = '/lab/tree/home'
