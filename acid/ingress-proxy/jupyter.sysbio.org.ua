@@ -1,12 +1,3 @@
-# Redirect HTTP to HTTPS
-server {
-    listen 80;
-    listen [::]:80;
-
-    server_name jupyter.sysbio.org.ua;
-    return 301 https://$host$request_uri;
-}
-
 # Required for websockets connection
 map $http_upgrade $connection_upgrade {
     default upgrade;
