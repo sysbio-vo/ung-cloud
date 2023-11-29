@@ -36,3 +36,17 @@ Append to `/etc/hosts`:
 10.0.1.72 jupyter.sysbio.org.ua
 ```
 Where `10.0.1.72` is IP of eth interface
+
+---
+
+## Note about default TLJH behaviour
+TLJH uses UserCreatingSpawner that creates new users called `jupyter-{username}`.
+We decided to remove this behaviour and fallback to SystemdSpawner with almost default config (see `systemd spawner config` part of jupyterhub_config.py)
+
+## New users
+By default, there are no allowed users except admins.
+To add user, you should execute
+```sudo tljh-config add-item users.allowed {username}```
+
+I don't understand how does admin panel work so I would recommend against using it to create new users :)
+
